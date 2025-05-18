@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>خدماتنا - ألفا سيرفيس ماسترز</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="images/logo alpha.png" alt="شعار ألفا سيرفيس ماسترز" class="nav-logo">
+            <div class="nav-brand">alphaservicemasters</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+            <li><a href="services.html" class="active"><i class="fa-solid fa-bell-concierge"></i> الخدمات</a></li>
+            <li><a href="about.html"><i class="fa-solid fa-users"></i> من نحن</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> تواصل معنا</a></li>
+        </ul>
+        <button id="loginBtn" class="login-btn creative-btn nav-login">
+            <span>تسجيل الدخول</span>
+            <svg class="arrow" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+        </button>
+    </nav>
+    <!-- Main content container for sidebar and products grid -->
+    <div class="main-content">
+        <!-- Sidebar for product categories (fixed on the right) -->
+        <aside class="sidebar-categories">
+            <h2>فئات المنتجات</h2>
+            <ul>
+                <li><a href="#">منتجات التنظيف</a></li>
+                <li><a href="#">معدات الصيانة</a></li>
+                <li><a href="#">منتجات التعقيم</a></li>
+                <li><a href="#">أدوات السلامة</a></li>
+                <li><a href="#">أخرى</a></li>
+            </ul>
+        </aside>
+        <!-- Products Grid (now beside the sidebar, not under) -->
+        <main class="products-grid">
+            <!-- 20 Product placeholders -->
+            <div class="product-card" data-title="منتج 1" data-info="معلومات عن منتج 1">منتج 1</div>
+            <div class="product-card" data-title="منتج 2" data-info="معلومات عن منتج 2">منتج 2</div>
+            <div class="product-card" data-title="منتج 3" data-info="معلومات عن منتج 3">منتج 3</div>
+            <div class="product-card" data-title="منتج 4" data-info="معلومات عن منتج 4">منتج 4</div>
+            <div class="product-card" data-title="منتج 5" data-info="معلومات عن منتج 5">منتج 5</div>
+            <div class="product-card" data-title="منتج 6" data-info="معلومات عن منتج 6">منتج 6</div>
+            <div class="product-card" data-title="منتج 7" data-info="معلومات عن منتج 7">منتج 7</div>
+            <div class="product-card" data-title="منتج 8" data-info="معلومات عن منتج 8">منتج 8</div>
+            <div class="product-card" data-title="منتج 9" data-info="معلومات عن منتج 9">منتج 9</div>
+            <div class="product-card" data-title="منتج 10" data-info="معلومات عن منتج 10">منتج 10</div>
+            <div class="product-card" data-title="منتج 11" data-info="معلومات عن منتج 11">منتج 11</div>
+            <div class="product-card" data-title="منتج 12" data-info="معلومات عن منتج 12">منتج 12</div>
+            <div class="product-card" data-title="منتج 13" data-info="معلومات عن منتج 13">منتج 13</div>
+            <div class="product-card" data-title="منتج 14" data-info="معلومات عن منتج 14">منتج 14</div>
+            <div class="product-card" data-title="منتج 15" data-info="معلومات عن منتج 15">منتج 15</div>
+            <div class="product-card" data-title="منتج 16" data-info="معلومات عن منتج 16">منتج 16</div>
+            <div class="product-card" data-title="منتج 17" data-info="معلومات عن منتج 17">منتج 17</div>
+            <div class="product-card" data-title="منتج 18" data-info="معلومات عن منتج 18">منتج 18</div>
+            <div class="product-card" data-title="منتج 19" data-info="معلومات عن منتج 19">منتج 19</div>
+            <div class="product-card" data-title="منتج 20" data-info="معلومات عن منتج 20">منتج 20</div>
+        </main>
+    </div>
+    <!-- Product Info Modal -->
+    <div id="productModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalInfo"></p>
+        </div>
+    </div>
+    <script src="services.js"></script>
+    <script>
+    // Ensure DOM is loaded before attaching event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.getElementById('modalTitle').textContent = this.getAttribute('data-title');
+                document.getElementById('modalInfo').textContent = this.getAttribute('data-info');
+                document.getElementById('productModal').style.display = 'flex';
+            });
+        });
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('productModal').style.display = 'none';
+        };
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('productModal')) {
+                document.getElementById('productModal').style.display = 'none';
+            }
+        };
+    });
+    </script>
+</body>
+</html>

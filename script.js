@@ -1,7 +1,5 @@
-document.getElementById('greetBtn').addEventListener('click', function() {
-    document.getElementById('message').textContent = 'Hello from Alpha Service Masters!';
-});
-
-document.getElementById('loginBtn').addEventListener('click', function() {
+document.getElementById('loginBtn').addEventListener('click', function(e) {
+    this.classList.add('clicked');
+    setTimeout(() => this.classList.remove('clicked'), 200);
     alert('Login functionality coming soon!');
 });
