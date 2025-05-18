@@ -1,98 +1,427 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>خدماتنا - ألفا سيرفيس ماسترز</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <title>منتجاتنا وخدماتنا | ألفا سيرفيس ماسترز</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS (Animate On Scroll) Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', Arial, sans-serif;
+      background: linear-gradient(120deg, #1e3c72 0%, #155ab6 100%);
+      min-height: 100vh;
+      color: #fff;
+      direction: rtl;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e3c72;
+      color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(30,60,114,0.2);
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    nav a.active,
+    nav a:hover {
+      background: #f7971e;
+      color: #fff;
+    }
+    .main-content {
+      display: flex;
+      max-width: 1200px;
+      margin: 36px auto 0 auto;
+      background: rgba(30,60,114,0.13);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px #0003;
+      padding: 0;
+      min-height: 600px;
+    }
+    .sidebar {
+      width: 210px;
+      background: rgba(30,60,114,0.25);
+      border-radius: 16px 0 0 16px;
+      padding: 36px 16px 36px 10px;
+      box-shadow: 2px 0 8px #0001;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+      color: #ffd200;
+      font-size: 1.15em;
+      margin-bottom: 12px;
+      text-align: right;
+      letter-spacing: 1px;
+    }
+    .category-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1em;
+      text-align: right;
+      cursor: pointer;
+      padding: 7px 0;
+      border-radius: 6px;
+      transition: background 0.16s, color 0.16s;
+      width: 100%;
+    }
+    .category-btn.active,
+    .category-btn:hover {
+      background: #f7971e;
+      color: #1e3c72;
+      font-weight: bold;
+    }
+    .content-area {
+      flex: 1;
+      padding: 36px 18px 48px 18px;
+      border-radius: 0 16px 16px 0;
+    }
+    h1 {
+      text-align: center;
+      color: #ffd200;
+      margin-bottom: 10px;
+      font-size: 2.2em;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #fff;
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      opacity: 0.85;
+    }
+    .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    /* --- COOL PRODUCT CARD EFFECTS --- */
+    .service-card {
+      position: relative;
+      background: rgba(255,255,255,0.10);
+      border-radius: 22px;
+      box-shadow: 0 6px 32px 0 rgba(30,60,114,0.18), 0 1.5px 8px 0 rgba(247,151,30,0.09);
+      width: 265px;
+      padding: 30px 16px 22px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(.4,2,.6,1), box-shadow 0.28s, background 0.28s;
+      cursor: pointer;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+      border: 2px solid transparent;
+    }
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 28px;
+      background: conic-gradient(from 90deg at 60% 40%, #f7971e 0%, #ffd200 25%, #1e3c72 50%, #155ab6 75%, #f7971e 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 0;
+      filter: blur(10px);
+      pointer-events: none;
+      animation: holo-glow 3s linear infinite;
+    }
+    @keyframes holo-glow {
+      0% { filter: blur(10px) brightness(1);}
+      50% { filter: blur(16px) brightness(1.2);}
+      100% { filter: blur(10px) brightness(1);}
+    }
+    .service-card:hover::before {
+      opacity: 0.7;
+    }
+    .service-card:hover {
+      transform: translateY(-14px) scale(1.045) rotate(-1deg);
+      box-shadow: 0 18px 54px 0 #ffd20055, 0 2.5px 16px 0 #1e3c72cc;
+      background: rgba(255,255,255,0.23);
+      border: 2px solid #ffd200;
+      animation: floatCard 1.6s infinite;
+    }
+    .service-card .service-img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      border: 3px solid #ffd200;
+      background: #fff;
+      box-shadow: 0 2px 12px #1a73e81a;
+      transition: box-shadow 0.3s, border 0.3s;
+      z-index: 1;
+      position: relative;
+    }
+    .service-card:hover .service-img {
+      box-shadow: 0 8px 36px #f7971e77, 0 1.5px 8px #1a73e833;
+      border: 3px solid #1e3c72;
+    }
+    .service-card h2 {
+      font-size: 1.18em;
+      color: #1e3c72;
+      margin-bottom: 9px;
+      margin-top: 0;
+      font-weight: 700;
+      z-index: 1;
+      position: relative;
+      letter-spacing: 0.5px;
+    }
+    .service-card p {
+      font-size: 1.01em;
+      color: #333;
+      margin-bottom: 14px;
+      min-height: 48px;
+      z-index: 1;
+      position: relative;
+      font-weight: 500;
+    }
+    .service-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #1e3c72 0%, #f7971e 100%);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 1.07em;
+      font-weight: bold;
+      transition: background 0.19s, transform 0.19s;
+      border: none;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px #1a73e81a;
+      z-index: 1;
+      position: relative;
+      letter-spacing: 0.5px;
+    }
+    .service-btn:hover {
+      background: linear-gradient(90deg, #f7971e 0%, #1e3c72 100%);
+      transform: scale(1.07);
+    }
+    @keyframes floatCard {
+      0% { transform: translateY(-14px) scale(1.045) rotate(-1deg);}
+      50% { transform: translateY(-22px) scale(1.06) rotate(-2deg);}
+      100% { transform: translateY(-14px) scale(1.045) rotate(-1deg);}
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+      .main-content {
+        flex-direction: column;
+        min-height: unset;
+      }
+      .sidebar {
+        width: 100%;
+        border-radius: 16px 16px 0 0;
+        flex-direction: row;
+        padding: 10px 8px;
+        box-shadow: none;
+        gap: 10px;
+        justify-content: center;
+      }
+      .content-area {
+        border-radius: 0 0 16px 16px;
+        padding: 20px 4px 32px 4px;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      nav ul li {
+        width: 100%;
+      }
+      nav a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .sidebar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        padding: 10px 4px;
+      }
+      .services-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+      .service-card {
+        width: 95vw;
+        max-width: 350px;
+      }
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="background-gradient"></div>
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo alpha.png" alt="شعار ألفا سيرفيس ماسترز" class="nav-logo">
-            <div class="nav-brand">alphaservicemasters</div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
-            <li><a href="services.html" class="active"><i class="fa-solid fa-bell-concierge"></i> الخدمات</a></li>
-            <li><a href="about.html"><i class="fa-solid fa-users"></i> من نحن</a></li>
-            <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> تواصل معنا</a></li>
-        </ul>
-        <button id="loginBtn" class="login-btn creative-btn nav-login">
-            <span>تسجيل الدخول</span>
-            <svg class="arrow" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"/>
-            </svg>
-        </button>
+  <header class="navbar">
+    <div class="logo">alphaservicemasters</div>
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
+        <li><a href="services.html" class="active"><i class="fa-solid fa-bell-concierge"></i> الخدمات</a></li>
+        <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> تواصل معنا</a></li>
+      </ul>
     </nav>
-    <!-- Main content container for sidebar and products grid -->
-    <div class="main-content">
-        <!-- Sidebar for product categories (fixed on the right) -->
-        <aside class="sidebar-categories">
-            <h2>فئات المنتجات</h2>
-            <ul>
-                <li><a href="#">منتجات التنظيف</a></li>
-                <li><a href="#">معدات الصيانة</a></li>
-                <li><a href="#">منتجات التعقيم</a></li>
-                <li><a href="#">أدوات السلامة</a></li>
-                <li><a href="#">أخرى</a></li>
-            </ul>
-        </aside>
-        <!-- Products Grid (now beside the sidebar, not under) -->
-        <main class="products-grid">
-            <!-- 20 Product placeholders -->
-            <div class="product-card" data-title="منتج 1" data-info="معلومات عن منتج 1">منتج 1</div>
-            <div class="product-card" data-title="منتج 2" data-info="معلومات عن منتج 2">منتج 2</div>
-            <div class="product-card" data-title="منتج 3" data-info="معلومات عن منتج 3">منتج 3</div>
-            <div class="product-card" data-title="منتج 4" data-info="معلومات عن منتج 4">منتج 4</div>
-            <div class="product-card" data-title="منتج 5" data-info="معلومات عن منتج 5">منتج 5</div>
-            <div class="product-card" data-title="منتج 6" data-info="معلومات عن منتج 6">منتج 6</div>
-            <div class="product-card" data-title="منتج 7" data-info="معلومات عن منتج 7">منتج 7</div>
-            <div class="product-card" data-title="منتج 8" data-info="معلومات عن منتج 8">منتج 8</div>
-            <div class="product-card" data-title="منتج 9" data-info="معلومات عن منتج 9">منتج 9</div>
-            <div class="product-card" data-title="منتج 10" data-info="معلومات عن منتج 10">منتج 10</div>
-            <div class="product-card" data-title="منتج 11" data-info="معلومات عن منتج 11">منتج 11</div>
-            <div class="product-card" data-title="منتج 12" data-info="معلومات عن منتج 12">منتج 12</div>
-            <div class="product-card" data-title="منتج 13" data-info="معلومات عن منتج 13">منتج 13</div>
-            <div class="product-card" data-title="منتج 14" data-info="معلومات عن منتج 14">منتج 14</div>
-            <div class="product-card" data-title="منتج 15" data-info="معلومات عن منتج 15">منتج 15</div>
-            <div class="product-card" data-title="منتج 16" data-info="معلومات عن منتج 16">منتج 16</div>
-            <div class="product-card" data-title="منتج 17" data-info="معلومات عن منتج 17">منتج 17</div>
-            <div class="product-card" data-title="منتج 18" data-info="معلومات عن منتج 18">منتج 18</div>
-            <div class="product-card" data-title="منتج 19" data-info="معلومات عن منتج 19">منتج 19</div>
-            <div class="product-card" data-title="منتج 20" data-info="معلومات عن منتج 20">منتج 20</div>
-        </main>
+  </header>
+  <div class="main-content">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>التصنيفات</h3>
+      <button class="category-btn active" data-category="all">الكل</button>
+      <button class="category-btn" data-category="jewelry">إكسسوارات</button>
+      <button class="category-btn" data-category="design">خدمات التصميم</button>
+      <button class="category-btn" data-category="ai">أدوات الذكاء الاصطناعي</button>
+      <button class="category-btn" data-category="subscriptions">اشتراكات</button>
+    </aside>
+    <!-- Content -->
+    <div class="content-area">
+      <h1>منتجاتنا وخدماتنا</h1>
+      <p class="subtitle">اختر التصنيف وشوف المنتجات والخدمات المتوفرة!</p>
+      <div class="services-grid" id="servicesGrid"></div>
     </div>
-    <!-- Product Info Modal -->
-    <div id="productModal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalInfo"></p>
-        </div>
-    </div>
-    <script src="services.js"></script>
-    <script>
-    // Ensure DOM is loaded before attaching event listeners
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.getElementById('modalTitle').textContent = this.getAttribute('data-title');
-                document.getElementById('modalInfo').textContent = this.getAttribute('data-info');
-                document.getElementById('productModal').style.display = 'flex';
-            });
-        });
-        document.getElementById('closeModal').onclick = function() {
-            document.getElementById('productModal').style.display = 'none';
-        };
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('productModal')) {
-                document.getElementById('productModal').style.display = 'none';
-            }
-        };
+  </div>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // بيانات المنتجات والخدمات
+    const services = [
+      {
+        title: "سلاسل عصرية",
+        desc: "مجموعة مختارة من السلاسل بتصاميم حديثة وجودة عالية.",
+        img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=256&q=80",
+        category: "jewelry"
+      },
+      {
+        title: "حساب Canva Pro",
+        desc: "احصل على حساب Canva Pro بأسعار مغرية واصنع تصاميم احترافية بسهولة!",
+        img: "https://static.canva.com/static/images/favicon.ico",
+        category: "design"
+      },
+      {
+        title: "أدوات الذكاء الاصطناعي",
+        desc: "نوفر لك اشتراكات أو وصول لأفضل أدوات الذكاء الاصطناعي في السوق.",
+        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=256&q=80",
+        category: "ai"
+      },
+      {
+        title: "اشتراك Tinder",
+        desc: "فعّل حسابك على Tinder مع اشتراك Plus أو Gold بأسعار ممتازة.",
+        img: "https://cdn-icons-png.flaticon.com/512/2111/2111709.png",
+        category: "subscriptions"
+      },
+      {
+        title: "اشتراك Netflix",
+        desc: "اشترك في Netflix وتمتع بأحدث الأفلام والمسلسلات.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+        category: "subscriptions"
+      },
+      {
+        title: "خدمة أخرى",
+        desc: "زيد أي خدمة أخرى تبيع فيها هنا، أو بدل النص والصورة حسب الحاجة.",
+        img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&q=80",
+        category: "jewelry"
+      }
+    ];
+    function renderServices(category) {
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = '';
+      let filtered = category === 'all' ? services : services.filter(s => s.category === category);
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="text-align:center;width:100%">لا توجد خدمات في هذا التصنيف حاليا.</p>';
+        return;
+      }
+      filtered.forEach((service, i) => {
+        // Build WhatsApp link with pre-filled message
+        const msg = encodeURIComponent(`مرحبا، أود طلب منتج: ${service.title}`);
+        const waLink = `https://wa.me/21654337890?text=${msg}`;
+        grid.innerHTML += `
+          <div class="service-card" data-aos="zoom-in-up" data-aos-delay="${i*100}">
+            <img src="${service.img}" alt="${service.title}" class="service-img">
+            <h2>${service.title}</h2>
+            <p>${service.desc}</p>
+            <a href="${waLink}" target="_blank" rel="noopener" class="service-btn">اطلب الآن</a>
+          </div>
+        `;
+      });
+      // Re-initialize AOS for new elements
+      AOS.refresh();
+    }
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderServices(this.dataset.category);
+      });
     });
-    </script>
+    // Initialize and render
+    renderServices('all');
+    AOS.init({
+      duration: 850,
+      easing: 'ease-out-back',
+      once: true
+    });
+  </script>
 </body>
 </html>

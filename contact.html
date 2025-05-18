@@ -1,43 +1,358 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>تواصل معنا - ألفا سيرفيس ماسترز</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <title>تواصل معنا | ألفا سيرفيس ماسترز</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      min-height: 100vh;
+      color: #fff;
+      direction: rtl;
+      position: relative;
+      overflow-x: hidden;
+      /* Soft blue gradient */
+      background: linear-gradient(120deg, #1a2741 0%, #253a5e 100%);
+    }
+    /* Animated Soft Gradient Overlay */
+    .cool-bg {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      background: linear-gradient(120deg, #1a2741 0%, #253a5e 40%, #284c63 70%, #2c5364 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 18s ease-in-out infinite;
+      opacity: 0.97;
+    }
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    /* Soft, muted blurred blobs */
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.22;
+      z-index: -1;
+      pointer-events: none;
+      animation: floatGlow 13s ease-in-out infinite alternate;
+      mix-blend-mode: lighten;
+    }
+    .bg-glow1 {
+      width: 340px; height: 340px;
+      background: #6ea2e0;
+      top: 12%; left: 8%;
+      animation-delay: 0s;
+    }
+    .bg-glow2 {
+      width: 220px; height: 220px;
+      background: #b6a4e0;
+      bottom: 10%; right: 10%;
+      animation-delay: 2s;
+    }
+    .bg-glow3 {
+      width: 180px; height: 180px;
+      background: #7fc8c8;
+      bottom: 22%; left: 14%;
+      animation-delay: 5s;
+    }
+    @keyframes floatGlow {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-30px) scale(1.07);}
+    }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(30,60,114,0.90);
+      color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 16px 0 #0003;
+      flex-wrap: wrap;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    nav a.active,
+    nav a:hover {
+      background: #7fc8c8;
+      color: #1a2741;
+    }
+    /* Contact Section */
+    .contact-section {
+      padding: 3rem 1rem;
+      max-width: 700px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.2s 0.2s forwards;
+    }
+    .contact-section h1 {
+      text-align: center;
+      color: #7fc8c8;
+      font-size: 2.2em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #0003;
+    }
+    .contact-section p {
+      text-align: center;
+      color: #e4eaff;
+      margin-bottom: 2.5em;
+      opacity: 0.92;
+      font-size: 1.15em;
+      text-shadow: 0 1px 4px #0002;
+    }
+    .contact-methods {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.09);
+      border-radius: 22px;
+      box-shadow: 0 6px 32px 0 rgba(30,60,114,0.11), 0 1.5px 8px 0 rgba(127,200,200,0.09);
+      width: 220px;
+      padding: 2.2rem 1rem 1.5rem 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.24s cubic-bezier(.4,2,.6,1), box-shadow 0.24s, background 0.24s;
+      border: 2px solid transparent;
+      cursor: pointer;
+      z-index: 1;
+      backdrop-filter: blur(18px);
+    }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 28px;
+      background: conic-gradient(from 90deg at 60% 40%, #7fc8c8 0%, #b6a4e0 50%, #6ea2e0 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 0;
+      filter: blur(8px);
+      pointer-events: none;
+      animation: holo-glow 4s linear infinite;
+    }
+    @keyframes holo-glow {
+      0% { filter: blur(8px) brightness(1);}
+      50% { filter: blur(12px) brightness(1.09);}
+      100% { filter: blur(8px) brightness(1);}
+    }
+    .contact-card:hover::before {
+      opacity: 0.4;
+    }
+    .contact-card:hover {
+      transform: translateY(-8px) scale(1.035) rotate(-1deg);
+      box-shadow: 0 12px 38px 0 #7fc8c833, 0 2.5px 16px 0 #b6a4e099;
+      background: rgba(255,255,255,0.17);
+      border: 2px solid #7fc8c8;
+    }
+    .contact-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #7fc8c8;
+      background: #fff;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 2px 12px #1a73e81a;
+      transition: box-shadow 0.3s, color 0.3s;
+      border: 2.5px solid #b6a4e0;
+    }
+    .contact-card:hover .contact-icon {
+      color: #253a5e;
+      box-shadow: 0 6px 32px #7fc8c844, 0 1.5px 8px #b6a4e033;
+      border-color: #7fc8c8;
+      background: #e4eaff;
+    }
+    .contact-title {
+      font-size: 1.1em;
+      color: #284c63;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      margin-top: 0.2em;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 4px #fff7;
+    }
+    .contact-link {
+      color: #7fc8c8;
+      text-decoration: none;
+      font-size: 1.08em;
+      font-weight: 700;
+      margin-top: 0.7em;
+      word-break: break-all;
+      transition: color 0.2s;
+      direction: ltr;
+      text-shadow: 0 1px 4px #fff9;
+    }
+    .contact-link:hover {
+      color: #253a5e;
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1rem 1rem;
+      background: rgba(30,60,114,0.93);
+      color: #fff;
+      border-radius: 40px 40px 0 0;
+      margin-top: 3rem;
+      font-size: 1rem;
+      box-shadow: 0 -2px 16px 0 #0002;
+    }
+    footer a {
+      color: #7fc8c8;
+      text-decoration: none;
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+      .contact-section {
+        padding: 2rem 0.5rem;
+      }
+      .contact-methods {
+        gap: 1.2rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      nav ul li {
+        width: 100%;
+      }
+      nav a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .contact-section {
+        padding: 1.5rem 0.2rem;
+      }
+      .contact-methods {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      .contact-card {
+        width: 95vw;
+        max-width: 350px;
+      }
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="background-gradient"></div>
-    <nav class="navbar">
-        <div class="nav-left">
-            <img src="images/logo alpha.png" alt="شعار ألفا سيرفيس ماسترز" class="nav-logo">
-            <div class="nav-brand">alphaservicemasters</div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a></li>
-            <li><a href="services.html"><i class="fa-solid fa-bell-concierge"></i> الخدمات</a></li>
-            <li><a href="about.html"><i class="fa-solid fa-users"></i> من نحن</a></li>
-            <li><a href="contact.html" class="active"><i class="fa-solid fa-envelope"></i> تواصل معنا</a></li>
-        </ul>
-        <button id="loginBtn" class="login-btn creative-btn nav-login">
-            <span>تسجيل الدخول</span>
-            <svg class="arrow" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M5 12h14M13 6l6 6-6 6"/>
-            </svg>
-        </button>
+  <div class="cool-bg"></div>
+  <div class="bg-glow bg-glow1"></div>
+  <div class="bg-glow bg-glow2"></div>
+  <div class="bg-glow bg-glow3"></div>
+  <header class="navbar">
+    <div class="logo">alphaservicemasters</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="services.html">الخدمات</a></li>
+        <li><a href="contact.html" class="active">تواصل معنا</a></li>
+      </ul>
     </nav>
-    <div class="page-container">
-        <h1>تواصل معنا</h1>
-        <p class="subtitle">يسعدنا تواصلك معنا! أرسل رسالتك عبر النموذج أدناه.</p>
-        <form class="contact-form">
-            <input type="text" placeholder="اسمك" required>
-            <input type="email" placeholder="بريدك الإلكتروني" required>
-            <textarea placeholder="رسالتك" required></textarea>
-            <button type="submit" class="login-btn creative-btn">إرسال الرسالة</button>
-        </form>
-        <div id="contactMsg"></div>
+  </header>
+  <section class="contact-section">
+    <h1>تواصل معنا</h1>
+    <p>يمكنك التواصل معنا مباشرة عبر أي من الطرق التالية:</p>
+    <div class="contact-methods">
+      <a class="contact-card" href="https://facebook.com/alphaservicemasters" target="_blank" rel="noopener">
+        <span class="contact-icon"><i class="fab fa-facebook-f"></i></span>
+        <div class="contact-title">صفحتنا على فيسبوك</div>
+        <span class="contact-link">alphaservicemasters</span>
+      </a>
+      <a class="contact-card" href="https://instagram.com/alphaservicemasters" target="_blank" rel="noopener">
+        <span class="contact-icon"><i class="fab fa-instagram"></i></span>
+        <div class="contact-title">حسابنا على إنستجرام</div>
+        <span class="contact-link">alphaservicemasters</span>
+      </a>
+      <a class="contact-card" href="https://wa.me/21654337890" target="_blank" rel="noopener">
+        <span class="contact-icon"><i class="fab fa-whatsapp"></i></span>
+        <div class="contact-title">واتساب مباشر</div>
+        <span class="contact-link" dir="ltr">+21654337890</span>
+      </a>
     </div>
-    <script src="contact.js"></script>
+  </section>
+  <footer>
+    <address>
+      © 2025 ألفا سيرفيس ماسترز | <a href="mailto:info@alphaservicemasters.com">info@alphaservicemasters.com</a>
+    </address>
+  </footer>
 </body>
 </html>
