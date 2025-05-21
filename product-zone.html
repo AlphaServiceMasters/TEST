@@ -106,6 +106,8 @@
       width: 42px;
       height: 42px;
       vertical-align: middle;
+      border-radius: 10px;
+      object-fit: cover;
     }
     .zone-header p {
       color: var(--text-muted);
@@ -280,13 +282,6 @@
       margin-top: 4px;
       display: inline-block;
     }
-    .product-img-btn {
-      /* padding: 2px 8px;
-      font-size: 0.85em;
-      min-width: 0;
-      width: auto;
-      border-radius: 12px; */
-    }
     .product-btn:hover, .product-img-btn:hover {
       background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 100%);
       transform: scale(1.07);
@@ -386,6 +381,14 @@
       padding: 24px 0 12px 0;
       opacity: 0.7;
     }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(18px);}
+      to {opacity: 1; transform: none;}
+    }
   </style>
 </head>
 <body>
@@ -405,7 +408,7 @@
   <div class="container">
     <section class="zone-header">
       <h1>
-        <img src="https://cdn-icons-png.flaticon.com/512/711/711769.png" alt="Products">
+        <img src="images/44.jpg" alt="سلاسل وإكسسوارات">
         منطقة المنتجات
       </h1>
       <p>
@@ -430,67 +433,43 @@
   <script>
     // Categories for this zone
     const categories = [
-      { key: "all", name: "الكل", img: "https://cdn-icons-png.flaticon.com/512/3595/3595455.png" },
-      { key: "necklaces", name: "سلاسل وإكسسوارات", img: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=100&q=80" },
+      { key: "all", name: "الكل", img: "https://th.bing.com/th/id/OIP.6JO-DS0G8-iUeQ4JXZs8LQAAAA?w=209&h=209&c=7&r=0&o=7&cb=iwp2&dpr=1.3&pid=1.7&rm=3" },
+      { key: "necklaces", name: "سلاسل وإكسسوارات", img: "images/44.jpg" },
       { key: "instagram", name: "انستجرام (متابعين/لايكات)", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png" },
       { key: "tiktok", name: "تيك توك (مشاهدات/لايكات/متابعين)", img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png" }
     ];
 
     // Products for this zone
     const products = [
-      {
-        title: "سلسلة ذهبية عصرية",
-        desc: "سلسلة بتصميم أنيق وجودة عالية، مناسبة لجميع الأذواق.",
-        img: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80",
-        category: "necklaces",
-        badge: "Hot",
-        price: 45
-      },
-      {
-        title: "سلسلة قلب تريندي",
-        desc: "سلسلة قلب مميزة، هدية مثالية للأحباب.",
-        img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
-        category: "necklaces",
-        price: 40
-      },
-      {
-        title: "متابعين إنستجرام (1000 متابع)",
-        desc: "زيادة متابعين حقيقيين لحسابك على إنستجرام بسرعة وأمان.",
-        img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
-        category: "instagram",
-        badge: "New",
-        price: 30
-      },
-      {
-        title: "لايكات إنستجرام (1000 لايك)",
-        desc: "احصل على لايكات حقيقية لمنشوراتك على إنستجرام.",
-        img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
-        category: "instagram",
-        price: 15
-      },
-      {
-        title: "مشاهدات تيك توك (5000 مشاهدة)",
-        desc: "زيادة مشاهدات فيديوهاتك على تيك توك بسرعة وبدون حظر.",
-        img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png",
-        category: "tiktok",
-        badge: "Hot",
-        price: 18
-      },
-      {
-        title: "لايكات تيك توك (1000 لايك)",
-        desc: "إعجابات حقيقية وسريعة لفيديوهاتك على تيك توك.",
-        img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png",
-        category: "tiktok",
-        price: 12
-      },
-      {
-        title: "متابعين تيك توك (1000 متابع)",
-        desc: "متابعين حقيقيين وآمنين لحسابك على تيك توك.",
-        img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png",
-        category: "tiktok",
-        badge: "New",
-        price: 28
-      }
+      // 20 DT necklaces
+      { title: "سلسلة ستانلس ستيل رقم 1", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/1.jpg", category: "necklaces", price: 20 },
+      { title: "سلسلة ستانلس ستيل رقم 2", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/2.jpg", category: "necklaces", price: 20 },
+      { title: "سلسلة ستانلس ستيل رقم 3", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/3.jpg", category: "necklaces", price: 20 },
+      { title: "سلسلة ستانلس ستيل رقم 4", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/4.jpg", category: "necklaces", price: 20 },
+      { title: "سلسلة ستانلس ستيل رقم 5", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/5.jpg", category: "necklaces", price: 20 },
+      { title: "سلسلة ستانلس ستيل رقم 6", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/6.jpg", category: "necklaces", price: 20 },
+      { title: "سلسلة ستانلس ستيل رقم 7", desc: "سلسلة عصرية بسعر 20 د.ت", img: "images/7.jpg", category: "necklaces", price: 20 },
+      // 30 DT necklaces
+      { title: "سلسلة ستانلس ستيل رقم 8", desc: "سلسلة فاخرة بسعر 30 د.ت", img: "images/33.jpg", category: "necklaces", price: 30 },
+      { title: "سلسلة ستانلس ستيل رقم 9", desc: "سلسلة فاخرة بسعر 30 د.ت", img: "images/44.jpg", category: "necklaces", price: 30 },
+      { title: "10", desc: "سلسلة فاخرة بسعر 30 د.ت", img: "images/55.jpg", category: "necklaces", price: 30 },
+      // Instagram Followers
+      { title: "متابعين إنستجرام (1K)", desc: "1000 متابع حقيقي لحسابك على إنستجرام بسرعة وأمان.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 13, badge: "Hot" },
+      { title: "متابعين إنستجرام (5K)", desc: "5000 متابع حقيقي لحسابك على إنستجرام بسرعة وأمان.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 55 },
+      { title: "متابعين إنستجرام (10K)", desc: "10000 متابع حقيقي لحسابك على إنستجرام بسرعة وأمان.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 90 },
+      // Instagram Likes
+      { title: "لايكات إنستجرام (1K)", desc: "1000 لايك حقيقي لمنشوراتك على إنستجرام.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 3 },
+      { title: "لايكات إنستجرام (2K)", desc: "2000 لايك حقيقي لمنشوراتك على إنستجرام.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 5 },
+      { title: "لايكات إنستجرام (5K)", desc: "5000 لايك حقيقي لمنشوراتك على إنستجرام.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 10 },
+      { title: "لايكات إنستجرام (10K)", desc: "10000 لايك حقيقي لمنشوراتك على إنستجرام.", img: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png", category: "instagram", price: 15 },
+      // TikTok Followers
+      { title: "متابعين تيك توك (1K)", desc: "1000 متابع حقيقي وآمن لحسابك على تيك توك.", img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png", category: "tiktok", price: 12, badge: "Hot" },
+      // TikTok Likes
+      { title: "لايكات تيك توك (1K)", desc: "1000 إعجاب حقيقي وسريع لفيديوهاتك على تيك توك.", img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png", category: "tiktok", price: 5 },
+      // TikTok Views
+      { title: "مشاهدات تيك توك (1K)", desc: "1000 مشاهدة حقيقية لفيديوهاتك على تيك توك.", img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png", category: "tiktok", price: 0.5, badge: "New" },
+      { title: "مشاهدات تيك توك (10K)", desc: "10000 مشاهدة حقيقية لفيديوهاتك على تيك توك.", img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png", category: "tiktok", price: 4.5 },
+      { title: "مشاهدات تيك توك (100K)", desc: "100000 مشاهدة حقيقية لفيديوهاتك على تيك توك.", img: "https://cdn-icons-png.flaticon.com/512/3046/3046125.png", category: "tiktok", price: 15 }
     ];
 
     let currentCategory = 'all';

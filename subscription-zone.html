@@ -106,6 +106,8 @@
       width: 42px;
       height: 42px;
       vertical-align: middle;
+      border-radius: 10px;
+      object-fit: cover;
     }
     .zone-header p {
       color: var(--text-muted);
@@ -127,7 +129,6 @@
         font-size: 1em;
       }
     }
-    /* Categories */
     .categories-grid {
       display: flex;
       flex-wrap: wrap;
@@ -181,7 +182,6 @@
       font-weight: 700;
       letter-spacing: 0.5px;
     }
-    /* Search Bar */
     .search-bar {
       text-align: center;
       margin-bottom: 24px;
@@ -201,7 +201,6 @@
     .search-bar input:focus {
       border: 1.5px solid var(--accent);
     }
-    /* Product List */
     .products-list {
       display: flex;
       flex-direction: column;
@@ -284,6 +283,18 @@
       background: linear-gradient(90deg, var(--accent2) 0%, var(--accent) 100%);
       transform: scale(1.07);
     }
+    .coming-soon {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0002;
+      color: #ffd700;
+      font-size: 1.2em;
+      text-align: center;
+      padding: 40px 0;
+      margin: 24px 0;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
     .badge {
       display: inline-block;
       color: #fff;
@@ -362,7 +373,7 @@
         منطقة الاشتراكات
       </h1>
       <p>
-        أفضل عروض الاشتراكات الرقمية: نتفليكس، سبوتيفاي، كانفا، أوفيس 365، شاهد وغيرها.<br>
+        أفضل عروض الاشتراكات الرقمية: نتفليكس، سبوتيفاي، كانفا، أدوات الذكاء الاصطناعي.<br>
         أسعار منافسة وتفعيل فوري وخدمة عملاء احترافية.
       </p>
     </section>
@@ -381,69 +392,25 @@
   <script>
     // Subscription categories with images
     const categories = [
-      { key: "all", name: "الكل", img: "https://cdn-icons-png.flaticon.com/512/3595/3595455.png" },
+      { key: "all", name: "الكل", img: "https://th.bing.com/th/id/OIP.6JO-DS0G8-iUeQ4JXZs8LQAAAA?w=209&h=209&c=7&r=0&o=7&cb=iwp2&dpr=1.3&pid=1.7&rm=3" },
       { key: "netflix", name: "نتفليكس", img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" },
       { key: "spotify", name: "سبوتيفاي", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" },
       { key: "canva", name: "كانفا", img: "https://static.canva.com/static/images/favicon.ico" },
-      { key: "office", name: "أوفيس 365", img: "https://seeklogo.com/images/M/microsoft-office-365-logo-6C1EBCF454-seeklogo.com.png" },
-      { key: "shahid", name: "شاهد", img: "https://play-lh.googleusercontent.com/9wKf7gF7w_5wS1x3b5g6v1n4Yp0Vv5lU9kBvW0n8Jc5e5j5w6yA=w240-h480-rw" }
+      { key: "ai", name: "أدوات الذكاء الاصطناعي", img: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png" }
     ];
 
-    // Example subscription products
+    // Subscription products
     const products = [
-      {
-        title: "اشتراك نتفليكس شهر",
-        desc: "استمتع بمشاهدة أحدث الأفلام والمسلسلات بجودة عالية.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-        category: "netflix",
-        badge: "Hot",
-        price: 35
-      },
-      {
-        title: "اشتراك سبوتيفاي شهر",
-        desc: "استمع لأغانيك المفضلة بدون إعلانات.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg",
-        category: "spotify",
-        badge: "New",
-        price: 20
-      },
-      {
-        title: "Canva Pro شهر",
-        desc: "احصل على جميع مزايا كانفا برو لتصميمات احترافية.",
-        img: "https://static.canva.com/static/images/favicon.ico",
-        category: "canva",
-        price: 25
-      },
-      {
-        title: "Office 365 شهر",
-        desc: "مجموعة برامج أوفيس الأصلية لجميع أجهزتك.",
-        img: "https://seeklogo.com/images/M/microsoft-office-365-logo-6C1EBCF454-seeklogo.com.png",
-        category: "office",
-        price: 30
-      },
-      {
-        title: "اشتراك شاهد VIP شهر",
-        desc: "شاهد أحدث المسلسلات العربية والعالمية.",
-        img: "https://play-lh.googleusercontent.com/9wKf7gF7w_5wS1x3b5g6v1n4Yp0Vv5lU9kBvW0n8Jc5e5j5w6yA=w240-h480-rw",
-        category: "shahid",
-        badge: "Hot",
-        price: 18
-      },
-      {
-        title: "اشتراك نتفليكس 3 أشهر",
-        desc: "توفير أكبر عند الاشتراك لمدة 3 أشهر.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-        category: "netflix",
-        price: 95
-      },
-      {
-        title: "Canva Pro سنة",
-        desc: "اشتراك سنوي بسعر خاص لمصممي الشركات.",
-        img: "https://static.canva.com/static/images/favicon.ico",
-        category: "canva",
-        badge: "New",
-        price: 220
-      }
+      // Spotify
+      { title: "سبوتيفاي شهر", desc: "استمع لأغانيك المفضلة بدون إعلانات لمدة شهر.", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", category: "spotify", price: 10 },
+      { title: "سبوتيفاي 3 أشهر", desc: "اشتراك سبوتيفاي لمدة 3 أشهر بسعر خاص.", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", category: "spotify", price: 25 },
+      { title: "سبوتيفاي 6 أشهر", desc: "اشتراك سبوتيفاي لمدة 6 أشهر.", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", category: "spotify", price: 45 },
+      { title: "سبوتيفاي 12 شهر", desc: "اشتراك سبوتيفاي لمدة سنة كاملة.", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg", category: "spotify", price: 90 },
+      // Canva
+      { title: "Canva Pro سنة", desc: "اشترك في كانفا برو لسنة كاملة بسعر 10 د.ت فقط.", img: "https://static.canva.com/static/images/favicon.ico", category: "canva", price: 10 },
+      { title: "Canva Pro 3 سنوات", desc: "اشترك في كانفا برو لمدة 3 سنوات بسعر 15 د.ت فقط.", img: "https://static.canva.com/static/images/favicon.ico", category: "canva", price: 15 },
+      // AI Tools
+      { title: "Perplexity AI Pro 12 شهر", desc: "اشترك في Perplexity Pro وتمتع بإمكانيات الذكاء الاصطناعي المتقدمة لمدة سنة كاملة: بحث متطور، نماذج GPT-4 وClaude، رفع ملفات، دعم خاص، وأكثر.[1][2][3][6]", img: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png", category: "ai", price: 69 }
     ];
 
     let currentCategory = 'all';
@@ -464,6 +431,11 @@
     function renderProducts(catKey, searchTerm = '') {
       const productsList = document.getElementById('productsList');
       productsList.innerHTML = '';
+      // Netflix: show coming soon, no products
+      if (catKey === 'netflix') {
+        productsList.innerHTML = `<div class="coming-soon">قريباً: عروض اشتراكات نتفليكس المميزة</div>`;
+        return;
+      }
       let filtered = catKey === 'all' ? products : products.filter(p => p.category === catKey);
       if (searchTerm) {
         filtered = filtered.filter(prod =>
