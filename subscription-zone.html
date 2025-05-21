@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>منطقة الاشتراكات | alphaservicemasters</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/tab1.png">
   <style>
     :root {
       --main-bg: #181d2a;
@@ -355,7 +357,7 @@
 <body>
   <div class="navbar">
     <div class="logo">
-      <img src="https://cdn-icons-png.flaticon.com/512/5953/5953768.png" alt="Alpha Logo" style="width:28px;height:28px;vertical-align:middle;border-radius:8px;">
+      <img src="images/alpha.png" alt="Alpha Logo" style="width:80px;height:80px;vertical-align:middle;border-radius:50%;">
       alphaservicemasters
     </div>
     <nav>
@@ -393,10 +395,13 @@
     // Subscription categories with images
     const categories = [
       { key: "all", name: "الكل", img: "https://th.bing.com/th/id/OIP.6JO-DS0G8-iUeQ4JXZs8LQAAAA?w=209&h=209&c=7&r=0&o=7&cb=iwp2&dpr=1.3&pid=1.7&rm=3" },
-      { key: "netflix", name: "نتفليكس", img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" },
+      { key: "netflix", name: "نتفليكس", img: "https://th.bing.com/th/id/OIP.YxJ2xI6kOBSLrIbVoZtPTgHaHa?w=160&h=180&c=7&r=0&o=7&cb=iwp2&dpr=1.3&pid=1.7&rm=3" },
+      { key: "youtube", name: "يوتيوب", img: "https://static.vecteezy.com/system/resources/previews/023/986/480/original/youtube-logo-youtube-logo-transparent-youtube-icon-transparent-free-free-png.png" },
+      { key: "iptv", name: "IPTV", img: "https://static.vecteezy.com/system/resources/previews/029/898/458/original/iptv-badge-icon-logo-stock-illustration-vector.jpg" },
       { key: "spotify", name: "سبوتيفاي", img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" },
       { key: "canva", name: "كانفا", img: "https://static.canva.com/static/images/favicon.ico" },
-      { key: "ai", name: "أدوات الذكاء الاصطناعي", img: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png" }
+      { key: "ai", name: "أدوات الذكاء الاصطناعي", img: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png" },
+      { key: "tinder", name: "تيندر", img: "https://th.bing.com/th/id/R.adb9e77504727f2ac14a3a859ed38cbd?rik=zDTb2zG%2bzaaCzQ&pid=ImgRaw&r=0" }
     ];
 
     // Subscription products
@@ -410,7 +415,13 @@
       { title: "Canva Pro سنة", desc: "اشترك في كانفا برو لسنة كاملة بسعر 10 د.ت فقط.", img: "https://static.canva.com/static/images/favicon.ico", category: "canva", price: 10 },
       { title: "Canva Pro 3 سنوات", desc: "اشترك في كانفا برو لمدة 3 سنوات بسعر 15 د.ت فقط.", img: "https://static.canva.com/static/images/favicon.ico", category: "canva", price: 15 },
       // AI Tools
-      { title: "Perplexity AI Pro 12 شهر", desc: "اشترك في Perplexity Pro وتمتع بإمكانيات الذكاء الاصطناعي المتقدمة لمدة سنة كاملة: بحث متطور، نماذج GPT-4 وClaude، رفع ملفات، دعم خاص، وأكثر.[1][2][3][6]", img: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png", category: "ai", price: 69 }
+      { title: "Perplexity AI Pro 12 شهر", desc: "اشترك في Perplexity Pro وتمتع بإمكانيات الذكاء الاصطناعي المتقدمة لمدة سنة كاملة: بحث متطور، نماذج GPT-4 وClaude، رفع ملفات، دعم خاص، وأكثر.[1][2][3][6]", img: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png", category: "ai", price: 69 },
+      // IPTV
+      { title: "IPTV 1 شهر", desc: "اشتراك IPTV لمدة شهر واحد مع قنوات عالمية ورياضية بجودة عالية.", img: "https://static.vecteezy.com/system/resources/previews/029/898/458/original/iptv-badge-icon-logo-stock-illustration-vector.jpg", category: "iptv", price: 15 },
+      { title: "IPTV 6 أشهر", desc: "اشتراك IPTV لمدة 6 أشهر مع قنوات عالمية ورياضية بجودة عالية.", img: "https://static.vecteezy.com/system/resources/previews/029/898/458/original/iptv-badge-icon-logo-stock-illustration-vector.jpg", category: "iptv", price: 65 },
+      { title: "IPTV 12 شهر", desc: "اشتراك IPTV لمدة سنة كاملة مع قنوات عالمية ورياضية بجودة عالية.", img: "https://static.vecteezy.com/system/resources/previews/029/898/458/original/iptv-badge-icon-logo-stock-illustration-vector.jpg", category: "iptv", price: 100 },
+      // Tinder
+      { title: "Tinder Plus 12 شهر", desc: "عرض محدود: اشتراك Tinder Plus لمدة 12 شهرًا بسعر مخفض من 100 د.ت إلى 65 د.ت فقط.", img: "https://th.bing.com/th/id/R.adb9e77504727f2ac14a3a859ed38cbd?rik=zDTb2zG%2bzaaCzQ&pid=ImgRaw&r=0", category: "tinder", price: 65, badge: "Hot" }
     ];
 
     let currentCategory = 'all';
@@ -431,9 +442,9 @@
     function renderProducts(catKey, searchTerm = '') {
       const productsList = document.getElementById('productsList');
       productsList.innerHTML = '';
-      // Netflix: show coming soon, no products
-      if (catKey === 'netflix') {
-        productsList.innerHTML = `<div class="coming-soon">قريباً: عروض اشتراكات نتفليكس المميزة</div>`;
+      // Netflix & Youtube: show coming soon, no products
+      if (catKey === 'netflix' || catKey === 'youtube') {
+        productsList.innerHTML = `<div class="coming-soon">قريباً: عروض اشتراكات ${catKey === 'netflix' ? 'نتفليكس' : 'يوتيوب'} المميزة</div>`;
         return;
       }
       let filtered = catKey === 'all' ? products : products.filter(p => p.category === catKey);
@@ -448,6 +459,15 @@
         return;
       }
       filtered.forEach(prod => {
+        const msg = encodeURIComponent(`مرحبًا، أود طلب اشتراك: ${prod.title}`);
+        const waLink = `https://wa.me/21654337890?text=${msg}`;
+        // Special case for Tinder: show old price as strikethrough
+        let priceHtml = '';
+        if (prod.category === 'tinder' && prod.price === 65) {
+          priceHtml = `<span style="color:#888;text-decoration:line-through;font-size:0.95em;margin-left:8px;">100 د.ت</span><span class="product-price">${prod.price} د.ت</span>`;
+        } else {
+          priceHtml = `<span class="product-price">${prod.price} د.ت</span>`;
+        }
         productsList.innerHTML += `
           <div class="product-row">
             <img class="product-img" src="${prod.img}" alt="${prod.title}">
@@ -458,8 +478,8 @@
               </div>
               <div class="product-desc">${prod.desc}</div>
             </div>
-            <div class="product-price">${prod.price} د.ت</div>
-            <a class="product-btn" href="#" onclick="alert('لطلب المنتج تواصل معنا عبر واتساب أو صفحة تواصل معنا.');return false;">اطلب الآن</a>
+            ${priceHtml}
+            <a class="product-btn" href="${waLink}" target="_blank" rel="noopener">اطلب الآن</a>
           </div>
         `;
       });

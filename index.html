@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>الرئيسية | alphaservicemasters</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/tab1.png">
   <style>
     :root {
       --main-bg: #181d2a;
@@ -64,28 +66,25 @@
         left: -60px;
       }
     }
+    /* --- REPLACE NAVBAR CSS TO MATCH product-zone.html --- */
     .navbar {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      background: var(--navbar-bg);
-      box-shadow: var(--navbar-shadow);
-      z-index: 100;
+      background: #20243a;
+      box-shadow: 0 2px 16px #0004;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 24px;
-      height: 64px;
+      height: 62px;
       direction: rtl;
     }
     .navbar .logo {
-      font-size: 1.6em;
+      font-size: 1.4em;
       font-weight: 900;
       color: var(--accent);
-      letter-spacing: 1.5px;
       display: flex;
       align-items: center;
       gap: 10px;
+      letter-spacing: 1.5px;
     }
     .navbar nav {
       display: flex;
@@ -117,10 +116,11 @@
         width: 100%;
       }
       .navbar .logo {
-        font-size: 1.2em;
+        font-size: 1.1em;
         margin-bottom: 2px;
       }
     }
+    /* --- END NAVBAR CSS --- */
     .container {
       max-width: 950px;
       margin: 0 auto;
@@ -187,47 +187,67 @@
       box-shadow: 0 1px 8px #ff980033;
     }
     .deal-of-day img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
+      max-width: 100%;
+      height: auto;
       border-radius: 16px;
       box-shadow: 0 2px 12px #2b8cfc22;
       margin-bottom: 18px;
-    }
-    .deal-of-day .deal-title {
-      font-size: 1.3em;
-      font-weight: 900;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .deal-of-day .deal-desc {
-      color: var(--text-muted);
-      font-size: 1.09em;
-      margin-bottom: 16px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
     }
     .deal-of-day .deal-btn {
       background: linear-gradient(90deg,var(--accent) 0%,var(--accent2) 100%);
       color: #fff;
-      padding: 10px 36px;
-      border-radius: 22px;
-      font-size: 1.1em;
+      padding: 12px 44px 12px 32px;
+      border-radius: 28px;
+      font-size: 1.18em;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 2px 8px #2b8cfc22;
-      transition: background 0.2s;
+      box-shadow: 0 4px 16px #2b8cfc33, 0 2px 8px #ff980022;
       border: none;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, box-shadow 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1;
+      outline: none;
     }
-    .deal-of-day .deal-btn:hover {
+    .deal-of-day .deal-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0.02) 100%);
+      z-index: 0;
+      border-radius: 28px;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .deal-of-day .deal-btn:hover, .deal-of-day .deal-btn:focus {
       background: linear-gradient(90deg,var(--accent2) 0%,var(--accent) 100%);
+      box-shadow: 0 8px 32px #2b8cfc55, 0 2px 12px #ff980044;
+      transform: translateY(-2px) scale(1.04);
+    }
+    .deal-of-day .deal-btn svg {
+      width: 1.3em;
+      height: 1.3em;
+      margin-left: 0.3em;
+      fill: #fff;
+      filter: drop-shadow(0 1px 2px #0006);
+      z-index: 2;
+      flex-shrink: 0;
     }
     @media (max-width: 700px) {
+      .deal-of-day img {
+        max-width: 90vw;
+        height: auto;
+      }
       .deal-of-day {
         padding: 18px 6px 16px 6px;
-      }
-      .deal-of-day img {
-        width: 80px;
-        height: 80px;
       }
       .deal-of-day .deal-title {
         font-size: 1.07em;
@@ -382,7 +402,7 @@
   <!-- Navbar -->
   <div class="navbar">
     <div class="logo">
-      <img src="https://cdn-icons-png.flaticon.com/512/5953/5953768.png" alt="Alpha Logo" style="width:32px;height:32px;vertical-align:middle;border-radius:8px;">
+      <img src="images/alpha.png" alt="Alpha Logo" style="width:80px;height:80px;vertical-align:middle;border-radius:50%;">
       alphaservicemasters
     </div>
     <nav>
@@ -408,16 +428,29 @@
     <!-- Deal of the Day -->
     <section class="deal-of-day">
       <div class="deal-badge">عرض اليوم</div>
-      <img src="https://images.unsplash.com/photo-1506812574058-fc75fa93fead?auto=format&fit=crop&w=400&q=80" alt="Deal Product">
-      <div class="deal-title">بطاقة بلايستيشن ستور $50</div>
-      <div class="deal-desc">احصل على بطاقة بلايستيشن ستور بقيمة 50 دولار بسعر خاص اليوم فقط! الكمية محدودة.</div>
-      <a href="#" class="deal-btn">اطلب الآن</a>
+      <img src="images/canva.jpg" alt="Canva Pro Offer">
+      <div class="deal-title">اشتراك Canva Pro لمدة سنة</div>
+      <div class="deal-desc">احصل على اشتراك Canva Pro لمدة سنة كاملة بسعر مميز! العرض لفترة محدودة.</div>
+      <a href="#" class="deal-btn" data-product="Canva Pro لمدة سنة">
+        <svg viewBox="0 0 24 24"><path d="M21.7 7.3a1 1 0 0 0-1.4 0l-9.3 9.3-4.3-4.3a1 1 0 1 0-1.4 1.4l5 5a1 1 0 0 0 1.4 0l10-10a1 1 0 0 0 0-1.4z"/></svg>
+        اطلب الآن
+      </a>
+    </section>
+    <section class="deal-of-day">
+      <div class="deal-badge">عرض اليوم</div>
+      <img src="images/prep.png" alt="Perplexity AI Pro Offer">
+      <div class="deal-title">اشتراك Perplexity AI Pro لمدة سنة</div>
+      <div class="deal-desc">استمتع بإمكانيات Perplexity AI Pro الكاملة لمدة سنة بسعر خاص اليوم فقط!</div>
+      <a href="#" class="deal-btn" data-product="Perplexity AI Pro لمدة سنة">
+        <svg viewBox="0 0 24 24"><path d="M21.7 7.3a1 1 0 0 0-1.4 0l-9.3 9.3-4.3-4.3a1 1 0 1 0-1.4 1.4l5 5a1 1 0 0 0 1.4 0l10-10a1 1 0 0 0 0-1.4z"/></svg>
+        اطلب الآن
+      </a>
     </section>
     <!-- Zones -->
     <div class="zones-grid">
       <a href="gaming-zone.html" class="zone-card">
         <div class="zone-img-wrap">
-          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Gaming Zone">
+          <img src="https://play-lh.googleusercontent.com/H6viU_ib22ENQJL8R-b0Ig5wtZTqYuPeRvRaEM8Q9BllB-gNyxLxQ83Xv9mI0kefYWQnwb2aoE69=w648-h364-rw" alt="Gaming Zone">
           <div class="zone-overlay"></div>
         </div>
         <div class="zone-info">
@@ -427,7 +460,7 @@
       </a>
       <a href="subscription-zone.html" class="zone-card">
         <div class="zone-img-wrap">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Subscription Zone">
+          <img src="https://miro.medium.com/v2/resize:fit:2840/format:webp/1*7sXnnTh9iADwrlj_zRdZKQ.png" alt="Subscription Zone">
           <div class="zone-overlay"></div>
         </div>
         <div class="zone-info">
@@ -437,7 +470,7 @@
       </a>
       <a href="product-zone.html" class="zone-card">
         <div class="zone-img-wrap">
-          <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=800&q=80" alt="Product Zone">
+          <img src="https://imageio.forbes.com/specials-images/imageserve/650dbf1ff4b9303a43ef747a/Online-Shopping/960x0.png?format=png&width=960" alt="Product Zone">
           <div class="zone-overlay"></div>
         </div>
         <div class="zone-info">
@@ -450,5 +483,18 @@
       &copy; 2025 alphaservicemasters. جميع الحقوق محفوظة.
     </footer>
   </div>
+  <script>
+    // WhatsApp order button handler
+    document.querySelectorAll('.deal-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var product = btn.getAttribute('data-product');
+        var msg = encodeURIComponent('مرحبًا، أود طلب عرض: ' + product);
+        var phone = '21654337890';
+        var url = 'https://wa.me/' + phone + '?text=' + msg;
+        window.open(url, '_blank');
+      });
+    });
+  </script>
 </body>
 </html>
