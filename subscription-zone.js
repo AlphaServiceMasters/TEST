@@ -11,7 +11,7 @@ const categories = [
   { key: "tinder", name: "تيندر", img: "https://th.bing.com/th/id/R.adb9e77504727f2ac14a3a859ed38cbd?rik=zDTb2zG%2bzaaCzQ&pid=ImgRaw&r=0" },
   { key: "microsoft", name: "مايكروسوفت", img: "images/microsoft office.webp" }, // Use correct local .webp image for Microsoft
   { key: "mcafee", name: "McAfee", img: "images/McAfee.webp" },
-  { key: "ccleaner", name: "CCleaner", img: "images/ccleaner.webp" },
+  { key: "ccleaner", name: "CCleaner", img: "images/CCLEANER.webp" },
   { key: "duolingo", name: "Duolingo", img: "images/duolingo.webp" } // Add Duolingo category
 ];
 
@@ -45,7 +45,7 @@ const products = [
   // McAfee AntiVirus Special Offer
   { title: "McAfee AntiVirus 12 شهر", desc: "عرض خاص: اشتراك مكافي AntiVirus لمدة سنة كاملة بسعر 25 د.ت فقط.", img: "images/McAfee.webp", category: "mcafee", price: 25, badge: "Hot" },
   // CCleaner Pro Special Promo
-  { title: "CCleaner Pro 12 شهر", desc: "عرض خاص: اشتراك CCleaner Pro لمدة سنة كاملة بسعر 15 د.ت فقط.", img: "images/ccleaner.webp", category: "ccleaner", price: 15, badge: "Promo" },
+  { title: "CCleaner Pro 12 شهر", desc: "عرض خاص: اشتراك CCleaner Pro لمدة سنة كاملة بسعر 15 د.ت فقط.", img: "images/CCLEANER.webp", category: "ccleaner", price: 15, badge: "Promo" },
   // Duolingo Plus Special Offer
   { title: "Duolingo Plus شهر", desc: "عرض خاص: اشتراك Duolingo Plus لمدة شهر بسعر 13 د.ت فقط.", img: "images/duolingo.webp", category: "duolingo", price: 13, badge: "Promo" }
 ];
