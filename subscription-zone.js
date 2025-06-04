@@ -11,7 +11,7 @@ const categories = [
   { key: "tinder", name: "تيندر", img: "https://th.bing.com/th/id/R.adb9e77504727f2ac14a3a859ed38cbd?rik=zDTb2zG%2bzaaCzQ&pid=ImgRaw&r=0" },
   { key: "microsoft", name: "مايكروسوفت", img: "images/microsoft office.webp" }, // Use correct local .webp image for Microsoft
   { key: "mcafee", name: "McAfee", img: "images/McAfee.webp" },
-  { key: "ccleaner", name: "CCleaner", img: "images/ccleaner.webp" },
+  { key: "ccleaner", name: "CCleaner", img: "images/CCLEANER.webp" },
   { key: "duolingo", name: "Duolingo", img: "images/duolingo.webp" } // Add Duolingo category
 ];
 
